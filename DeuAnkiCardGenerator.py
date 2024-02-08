@@ -4,14 +4,12 @@ from gtts import gTTS
 from re import sub
 
 class DeuAnkiCardGenerator(BaseAnkiCardGenerator):
-    def _readFiles(self, notes: []):
+    def _readFiles(self):
         pathes = ["DE_AllPhrases", "DE_AllVerbs", "DE_AllWords", "DE_TEST"]
         for path in pathes:
             with open(f'.\\DE\\{path}.csv', "r+", encoding='utf-8') as file:            
                 lines = file.readlines()
                 cur = 1
-                print(path)
-
                 for line in lines:
                     _, de, ru, _ = line.split('|')
                     normalizedDe = self.__normalize_text_to_speech(de)

@@ -2,16 +2,16 @@ from AnkiCardSaver import AnkiCardSaver
 from abc import ABC, abstractmethod 
 
 class BaseAnkiCardGenerator(ABC):
-    def __init__(self, saver: AnkiCardSaver) -> None:
-        self.__cardSaver = saver
+    def __init__(self) -> None:
+        pass
 
-    def run(self):
+    def run(self) -> []:
         self.__notes = []
-        self._readFiles(self.__notes)
-        self.__cardSaver.save_anki_cards(self.__notes)
+        self._readFiles()
+        return self.__notes
 
     @abstractmethod
-    def _readFiles(self, notes: []):
+    def _readFiles(self):
         pass
 
     @abstractmethod
@@ -23,5 +23,8 @@ class BaseAnkiCardGenerator(ABC):
             "deckName": deckName,
                     "modelName": self._modelName(),
                     "fields": fields,
-                    "tags": []
+                    "tags": [],
+                    "options": {
+                        "allowDuplicate": True,
+                    }
         })
