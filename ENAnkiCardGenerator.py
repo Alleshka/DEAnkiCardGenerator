@@ -2,12 +2,12 @@ from BaseAnkiCardGenerator import BaseAnkiCardGenerator
 
 class ENAnkiCardGenerator(BaseAnkiCardGenerator):
     def _readFiles(self):
-        pathes = ["EN_MyWords", "EN_SkyengWords"]
+        pathes = ["EN_AllMyWords", "EN_SkyengWords"]
         for path in pathes:
             with open(f'.\\EN\\{path}.csv', "r+", encoding='utf-8') as file:            
                 lines = file.readlines()
                 for line in lines:
-                    _, en, definition, example, ru , img, _ = line.split('|')
+                    _, en, definition, example, ru , img, _ = line.lower().split('|')
 
                     img = img.strip()
                     en = en.strip()
